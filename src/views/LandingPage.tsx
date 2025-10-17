@@ -2,8 +2,10 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Modal from "../components/Modal";
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -116,7 +118,7 @@ export default function LandingPage() {
 
       localStorage.setItem("userData", JSON.stringify(userData));
 
-      window.location.href = "/plans";
+      navigate("/plans", { replace: true });
     } catch (err) {
       console.error(err);
       alert("Ocurrió un error al obtener los datos del usuario.");
