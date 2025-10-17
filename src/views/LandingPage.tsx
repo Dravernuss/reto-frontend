@@ -5,8 +5,10 @@ import Modal from "../components/Modal";
 
 export default function LandingPage() {
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
+    tipoDocumento: "DNI",
     documento: "",
     celular: "",
     privacidad: false,
@@ -25,41 +27,56 @@ export default function LandingPage() {
   ) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
-    let newValue = value;
+    let newValue: string | boolean = value;
+
+    if (name === "tipoDocumento") {
+      newValue = value;
+      setFormData((prev) => ({
+        ...prev,
+        tipoDocumento: String(newValue),
+        documento: "",
+      }));
+      setErrors((prev) => ({ ...prev, documento: "" }));
+      return;
+    }
 
     if (name === "documento") {
-      newValue = value.replace(/\D/g, "").slice(0, 8);
+      const maxLength = formData.tipoDocumento === "DNI" ? 8 : 10;
+      newValue = value.replace(/\D/g, "").slice(0, maxLength);
     }
+
     if (name === "celular") {
-      newValue = value.replace(/\D/g, "").slice(0, 9);
+      newValue = value.replace(/\D/g, "").slice(0, 10);
     }
 
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: type === "checkbox" ? checked : newValue,
-    });
+    }));
 
-    setErrors({
-      ...errors,
-      [name]: "",
-    });
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = () => {
     const newErrors: any = {};
+    const { tipoDocumento, documento, celular, privacidad, comunicaciones } =
+      formData;
 
-    if (!/^\d{8}$/.test(formData.documento)) {
-      newErrors.documento = "El documento ingresado no es válido";
+    if (tipoDocumento === "DNI" && !/^\d{8}$/.test(documento)) {
+      newErrors.documento = "*El documento ingresado no es válido";
+    }
+    if (tipoDocumento === "RUC" && !/^\d{10}$/.test(documento)) {
+      newErrors.documento = "*El documento ingresado no es válido";
     }
 
-    if (!/^\d{9}$/.test(formData.celular)) {
+    if (!/^\d{9,10}$/.test(celular)) {
       newErrors.celular = "El celular ingresado no es válido";
     }
 
-    if (!formData.privacidad) {
+    if (!privacidad) {
       newErrors.privacidad = "Debes aceptar la Política de Privacidad";
     }
-    if (!formData.comunicaciones) {
+    if (!comunicaciones) {
       newErrors.comunicaciones = "Debes aceptar la Política de Comunicaciones";
     }
 
@@ -67,10 +84,44 @@ export default function LandingPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validateForm()) {
-      alert("Formulario válido ✅");
+
+    if (!validateForm()) return;
+
+    const { tipoDocumento, documento, celular } = formData;
+
+    if (
+      !(
+        tipoDocumento === "DNI" &&
+        documento === "30216147" &&
+        celular === "5130216147"
+      )
+    ) {
+      setErrors((prev) => ({
+        ...prev,
+        documento: "*El documento ingresado no es válido",
+      }));
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await fetch(
+        "https://rimac-front-end-challenge.netlify.app/api/user.json"
+      );
+      if (!response.ok)
+        throw new Error("Error al obtener los datos del usuario");
+      const userData = await response.json();
+
+      localStorage.setItem("userData", JSON.stringify(userData));
+
+      window.location.href = "/plans";
+    } catch (err) {
+      console.error(err);
+      alert("Ocurrió un error al obtener los datos del usuario.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -147,11 +198,12 @@ export default function LandingPage() {
                 <div className="flex">
                   <select
                     name="tipoDocumento"
-                    className="border border-gray-300 border-r-0 rounded-l-lg pl-2 text-lm flex-1"
-                    defaultValue="DNI"
+                    onChange={handleChange}
+                    value={formData.tipoDocumento}
+                    className="border border-gray-300 border-r-0 rounded-l-lg pl-2 text-lm flex-1 focus:outline-none"
                   >
-                    <option>DNI</option>
-                    <option>RUC</option>
+                    <option value="DNI">DNI</option>
+                    <option value="RUC">RUC</option>
                   </select>
 
                   <div className="relative flex-[2]">
@@ -171,7 +223,7 @@ export default function LandingPage() {
                     />
                     <label
                       htmlFor="documento"
-                      className={`absolute left-3 text-gray-500 text-sm transition-all bg-white px-1 pointer-events-none
+                      className={`absolute left-3 text-gray-500 text-sm transition-all px-1 pointer-events-none
                         ${
                           formData.documento
                             ? "top-1 text-xs text-black"
@@ -207,7 +259,7 @@ export default function LandingPage() {
                   />
                   <label
                     htmlFor="celular"
-                    className={`absolute left-3 text-gray-500 text-sm transition-all bg-white px-1 pointer-events-none
+                    className={`absolute left-3 text-gray-500 text-sm transition-all px-1 pointer-events-none
                       ${
                         formData.celular
                           ? "top-1 text-xs text-black"
@@ -269,9 +321,10 @@ export default function LandingPage() {
 
               <button
                 type="submit"
+                disabled={loading}
                 className="bg-black font-bold text-lg text-white py-3 cursor-pointer rounded-full mt-6 hover:bg-white hover:text-black hover:border transition w-full md:w-1/2 self-center md:self-start"
               >
-                Cotiza aquí
+                {loading ? "Verificando..." : "Cotiza aquí"}
               </button>
             </form>
           </div>
@@ -285,7 +338,7 @@ export default function LandingPage() {
           isOpen={showModal}
           onClose={() => setShowModal(false)}
           title="Aplican Términos y Condiciones"
-          description="Encontrarás información importante sobre tus derechos y obligaciones al utilizar nuestros servicios."
+          description="Encontrarás información importante sobre tus derechos y obligaciones al utilizar nuestros servicios..."
         />
       )}
     </>

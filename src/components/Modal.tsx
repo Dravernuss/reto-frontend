@@ -30,7 +30,9 @@ export default function Modal({
         </button>
         <h2 className="text-center text-base font-bold mb-3">{title}</h2>
         <hr className="border-gray-200 mb-4" />
-        <p className="text-sm text-gray-700 leading-relaxed">{description}</p>
+        <p className="text-sm text-gray-700 leading-relaxed text-justify">
+          {description}
+        </p>
       </div>
     </div>
   );
