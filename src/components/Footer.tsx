@@ -3,7 +3,7 @@ export default function Footer() {
 
   return (
     <footer className="fixed bottom-0 w-full bg-black text-white p-6 md:p-0">
-      <div className="max-w-6xl h-26.5 mx-auto px-4">
+      <div className="max-w-6xl h-26.5 mx-auto px-7 lg:px-4">
         <div className="h-full grid grid-cols-1 md:grid-cols-2 items-center text-center md:text-left gap-2">
           {/* Logo responsive */}
           <div className="pb-5 md:pb-0 md:border-none border-b-2 border-gray-800">
