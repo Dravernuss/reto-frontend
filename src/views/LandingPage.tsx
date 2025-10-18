@@ -140,22 +140,22 @@ export default function LandingPage() {
         <NavBar />
         <section className="w-full overflow-hidden md:pt-18 pt-0 flex items-center">
           <img
-            src="src/assets/blur-asset-left2.png"
+            src="/images/blur-asset-left2.png"
             alt=""
             className="absolute left-0 bottom-0 w-[100%] select-none pointer-events-none md:hidden"
           />
           <img
-            src="src/assets/blur-asset1.png"
+            src="/images/blur-asset1.png"
             alt=""
             className="absolute right-0 top-0 w-[70%] select-none pointer-events-none md:hidden"
           />
           <img
-            src="src/assets/blur-asset-left.png"
+            src="/images/blur-asset-left.png"
             alt=""
             className="absolute left-0 bottom-0 md:w-[40%] lg:w-[30%] select-none pointer-events-none hidden md:block"
           />
           <img
-            src="src/assets/blur-asset.png"
+            src="/images//blur-asset.png"
             alt=""
             className="absolute right-0 top-0 md:w-[40%] lg:w-[20%] select-none pointer-events-none hidden md:block"
           />
@@ -163,7 +163,7 @@ export default function LandingPage() {
           <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-start px-6 md:px-4 w-full pb-24">
             <div className="hidden md:block max-w-34 md:max-w-120 w-fit h-auto justify-center md:justify-start">
               <img
-                src="src/assets/familia.webp"
+                src="/images/familia.webp"
                 alt="Familia feliz"
                 className="rounded-3xl shadow-lg w-3/4 md:w-[460px]"
               />
@@ -181,7 +181,7 @@ export default function LandingPage() {
                     </h1>
                   </div>
                   <img
-                    src="src/assets/familia.webp"
+                    src="/images/familia.webp"
                     alt="Familia"
                     className="w-34 h-40 object-cover rounded-lg shadow-md ml-4"
                   />

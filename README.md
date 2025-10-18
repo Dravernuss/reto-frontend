@@ -1,73 +1,101 @@
-# React + TypeScript + Vite
+# 🩺 RIMAC - Seguro Salud Flexible
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada con **React + TypeScript + TailwindCSS**, que permite a los usuarios visualizar, comparar y seleccionar planes de salud personalizados según su edad o la de un tercero.  
+El proyecto replica una experiencia completa de cotización, validación y selección de planes médicos, con un enfoque en **usabilidad, diseño moderno y validaciones precisas**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Demo en Producción
 
-## React Compiler
+🔗 **[Ver Proyecto Desplegado en Netlify](https://reto-esteban-rodas.netlify.app/)**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📋 Descripción General
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+El sistema permite ingresar los datos del usuario (tipo y número de documento, celular) y, tras ser validado, acceder a los planes disponibles.  
+También se puede cotizar un seguro para otra persona y revisar un **resumen final del plan elegido**, mostrando la información detallada del usuario y el costo del plan.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Validaciones implementadas
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Documento:
+  - **DNI:** máximo 8 caracteres.
+  - **RUC:** máximo 10 caracteres.
+- **Celular:** admite hasta 20 dígitos, pero requiere entre 9 y 10 válidos.
+- **Checkboxes obligatorios:** ambos deben estar marcados.
+- **Validación de usuario existente:** solo permite continuar si el usuario coincide con la información almacenada en la API simulada.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+#### 🔑 Datos válidos para prueba
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- DNI: `30216147`
+- CEL: `5130216147`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧠 Tecnologías Utilizadas
+
+- ⚛️ **React** (con Hooks y TypeScript)
+- 🎨 **TailwindCSS** (diseño responsive + dark mode)
+- 🧭 **React Router** (manejo de rutas)
+- 💾 **localStorage** (persistencia de datos)
+- ☁️ **Netlify** (despliegue)
+
+---
+
+## 🧩 Arquitectura y Componentes
+
+La aplicación se estructura mediante una arquitectura modular y reutilizable:
+
+- `NavBar` – Encabezado con modo oscuro.
+- `LandingPage` – Pantalla principal con formulario de validación.
+- `PlansPage` – Muestra los planes recomendados según la selección.
+- `SummaryPage` – Resumen del plan elegido y datos del usuario.
+- `Modal`, `Steps`, `ReturnButton`, etc. – Componentes reutilizables para UX y consistencia visual.
+- `Footer` – Pie de página adaptativo y responsivo.
+
+---
+
+## 🧱 Decisiones Técnicas
+
+- Uso de **localStorage** para evitar solicitudes repetidas a la API.
+- Manejo local de los planes para optimizar el rendimiento.
+- **TailwindCSS** elegido por su rapidez de desarrollo y flexibilidad mobile-first.
+- Fuentes personalizadas **BR Sonoma** y **Lato** agregadas mediante `@font-face` y configuradas en `tailwind.config.js`.
+
+---
+
+## 🔧 Retos y Soluciones
+
+- **Carga de imágenes en Netlify:**  
+  Se corrigieron rutas moviendo los archivos a `public/` para compatibilidad con Vite en producción.
+- **Fuentes personalizadas:**  
+  Se configuraron manualmente en CSS y Tailwind para garantizar compatibilidad entre navegadores.
+- **Labels flotantes en inputs:**  
+  Se implementaron con `peer` y `placeholder=" "` para lograr una experiencia visual fluida sin librerías externas.
+
+---
+
+## 🧰 Buenas Prácticas
+
+- Componentes tipados con TypeScript.
+- Validaciones manuales con expresiones regulares.
+- Estructura clara y semántica.
+- Diseño responsive y accesible (uso de `alt`, `labels`, y buen contraste).
+- Código modular y reutilizable.
+
+---
+
+## 🧾 Sustentación del Proyecto
+
+El uso de **React + TypeScript + TailwindCSS** permitió mantener una estructura clara, eficiente y fácil de mantener, priorizando la calidad visual y la estabilidad funcional.
+
+---
+
+## 👨‍💻 Autor
+
+**Esteban Rodas**  
+Software Engineer | Frontend & Backend Developer  
+📧 [esteban16.rodas@gmail.com](mailto:esteban16.rodas@gmail.com)  
+🔗 [LinkedIn](https://www.linkedin.com/in/esteban-rodas-ramos/)
+
+---

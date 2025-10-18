@@ -40,7 +40,7 @@ export default function Steps({ currentStep }: StepsProps) {
         </div>
 
         <div>
-          <img src="src/assets/line-progress.svg" alt="separator" />
+          <img src="/images/line-progress.svg" alt="separator" />
         </div>
 
         <div className="flex items-center gap-4">

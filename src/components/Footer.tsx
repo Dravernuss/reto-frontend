@@ -9,11 +9,11 @@ export default function Footer() {
           <div className="pb-5 md:pb-0 md:border-none border-b-2 border-gray-800">
             <picture className="flex justify-center md:justify-start">
               <source
-                srcSet="src/assets/logo-white-res.svg"
+                srcSet="/images/logo-white-res.svg"
                 media="(max-width: 768px)"
               />
               <img
-                src="src/assets/logo-white.svg"
+                src="/images/logo-white.svg"
                 alt="Logo"
                 className="md:h-10.5 h-5"
               />

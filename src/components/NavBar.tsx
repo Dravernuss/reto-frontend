@@ -10,7 +10,7 @@ export default function NavBar() {
     <>
       <header className="top-0 w-full z-50 h-14 md:h-16">
         <div className="max-w-6xl h-14 md:h-16 mx-auto px-7 lg:px-4 flex justify-between items-center">
-          <img src="src/assets/logo.svg" alt="Rimac logo" />
+          <img src="/images/logo.svg" alt="Rimac logo" />
           <div className="flex items-center">
             <h1
               onClick={() => setIsModalOpen(true)}

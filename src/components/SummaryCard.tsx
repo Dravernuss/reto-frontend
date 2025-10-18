@@ -24,7 +24,7 @@ export default function SummaryCard({
 
       {/* Nombre del usuario */}
       <div className="flex items-center gap-2 mb-4">
-        <img src="src/assets/user-icon.svg" alt="user" className="w-5 h-5" />
+        <img src="/images/user-icon.svg" alt="user" className="w-5 h-5" />
         <h2 className="text-lg md:text-xl font-[900] text-[#141938]">
           {fullName}
         </h2>
