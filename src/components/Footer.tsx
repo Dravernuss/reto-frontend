@@ -2,7 +2,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="fixed bottom-0 w-full bg-black text-white p-6 md:p-0">
+    <footer className="md:fixed relative bottom-0 w-full bg-black text-white p-6 md:p-0">
       <div className="max-w-6xl h-26.5 mx-auto px-7 lg:px-4">
         <div className="h-full grid grid-cols-1 md:grid-cols-2 items-center text-center md:text-left gap-2">
           {/* Logo responsive */}
@@ -21,9 +21,9 @@ export default function Footer() {
           </div>
 
           <div className="flex justify-center md:justify-end items-center">
-            <h3 className="text-sm text-white">
+            <h1 className="text-sm text-white">
               © {year} RIMAC Seguros y Reaseguros.
-            </h3>
+            </h1>
           </div>
         </div>
       </div>

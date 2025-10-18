@@ -44,7 +44,9 @@ export default function UserPlan({
 
       <div className="text-left">
         <h3 className="font-bold text-[20px]">{name}</h3>
-        <p className="text-[12px] mt-2 text-gray-700">{description}</p>
+        <p className="text-[12px] mt-2 text-gray-700 leading-5">
+          {description}
+        </p>
       </div>
     </div>
   );

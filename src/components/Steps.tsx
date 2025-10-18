@@ -30,13 +30,13 @@ export default function Steps({ currentStep }: StepsProps) {
           >
             1
           </div>
-          <span
-            className={`font-medium ${
+          <h2
+            className={`font-bold ${
               currentStep >= 1 ? "text-black" : "text-[#7981B2] opacity-75"
             }`}
           >
             Planes y coberturas
-          </span>
+          </h2>
         </div>
 
         <div>
@@ -53,13 +53,15 @@ export default function Steps({ currentStep }: StepsProps) {
           >
             2
           </div>
-          <span
-            className={`font-medium  ${
-              currentStep >= 2 ? "text-black" : "text-[#7981B2] opacity-75"
+          <h2
+            className={`font-bold ${
+              currentStep >= 2
+                ? "text-black"
+                : "text-[#7981B2] font-medium opacity-75"
             }`}
           >
             Resumen
-          </span>
+          </h2>
         </div>
       </div>
 

@@ -94,7 +94,7 @@ export default function PlansPage() {
             />
           </div>
 
-          <h2 className="max-w-xl mx-0 md:mx-auto md:text-[2.5rem] font-semibold md:mt-11 text-[28px] leading-12 text-left md:text-center tracking-[-.6px] text-black">
+          <h2 className="max-w-xl mx-0 md:mx-auto md:text-[40px] font-bold md:mt-11 text-[28px] leading-12 text-left md:text-center text-black">
             {Username} ¿Para quién deseas cotizar?
           </h2>
           <p className="max-w-xl mx-0 md:mx-auto text-black md:mt-2 mb-6">

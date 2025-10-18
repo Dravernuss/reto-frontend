@@ -12,12 +12,12 @@ export default function NavBar() {
         <div className="max-w-6xl h-14 md:h-16 mx-auto px-7 lg:px-4 flex justify-between items-center">
           <img src="src/assets/logo.svg" alt="Rimac logo" />
           <div className="flex items-center">
-            <p
+            <h1
               onClick={() => setIsModalOpen(true)}
-              className="hidden pr-5 text-sm text-black bg-none cursor-pointer hover:underline md:inline-block family-brsonoma"
+              className="hidden pr-5 text-[12px] font-medium text-black bg-none cursor-pointer hover:underline md:inline-block "
             >
               ¡Compra por este medio!
-            </p>
+            </h1>
             <Link
               to="tel:0114116001"
               className="font-bold text-base flex items-center text-black hover:underline"

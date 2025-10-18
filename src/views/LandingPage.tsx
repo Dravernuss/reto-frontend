@@ -49,15 +49,18 @@ export default function LandingPage() {
     }
 
     if (name === "celular") {
-      newValue = value.replace(/\D/g, "").slice(0, 10);
+      newValue = value.replace(/\D/g, "").slice(0, 20);
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+    if (name === "documento" || name === "celular") {
+      setGeneralError("");
     }
 
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : newValue,
     }));
-
-    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = () => {
@@ -133,217 +136,213 @@ export default function LandingPage() {
 
   return (
     <>
-      <NavBar />
-      <section className="w-full overflow-hidden md:pt-18 pt-0 flex items-center">
-        <img
-          src="src/assets/blur-asset-left2.png"
-          alt=""
-          className="absolute left-0 bottom-0 w-[100%] select-none pointer-events-none md:hidden"
-        />
-        <img
-          src="src/assets/blur-asset1.png"
-          alt=""
-          className="absolute right-0 top-0 w-[70%] select-none pointer-events-none md:hidden"
-        />
-        <img
-          src="src/assets/blur-asset-left.png"
-          alt=""
-          className="absolute left-0 bottom-0 md:w-[40%] lg:w-[30%] select-none pointer-events-none hidden md:block"
-        />
-        <img
-          src="src/assets/blur-asset.png"
-          alt=""
-          className="absolute right-0 top-0 md:w-[40%] lg:w-[20%] select-none pointer-events-none hidden md:block"
-        />
+      <div className="bg-[#F8F9FF] min-h-screen flex flex-col">
+        <NavBar />
+        <section className="w-full overflow-hidden md:pt-18 pt-0 flex items-center">
+          <img
+            src="src/assets/blur-asset-left2.png"
+            alt=""
+            className="absolute left-0 bottom-0 w-[100%] select-none pointer-events-none md:hidden"
+          />
+          <img
+            src="src/assets/blur-asset1.png"
+            alt=""
+            className="absolute right-0 top-0 w-[70%] select-none pointer-events-none md:hidden"
+          />
+          <img
+            src="src/assets/blur-asset-left.png"
+            alt=""
+            className="absolute left-0 bottom-0 md:w-[40%] lg:w-[30%] select-none pointer-events-none hidden md:block"
+          />
+          <img
+            src="src/assets/blur-asset.png"
+            alt=""
+            className="absolute right-0 top-0 md:w-[40%] lg:w-[20%] select-none pointer-events-none hidden md:block"
+          />
 
-        <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-start px-6 md:px-4 w-full">
-          <div className="hidden md:block max-w-34 md:max-w-120 w-fit h-auto justify-center md:justify-start">
-            <img
-              src="src/assets/familia.webp"
-              alt="Familia feliz"
-              className="rounded-3xl shadow-lg w-3/4 md:w-[460px]"
-            />
-          </div>
+          <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-start px-6 md:px-4 w-full pb-24">
+            <div className="hidden md:block max-w-34 md:max-w-120 w-fit h-auto justify-center md:justify-start">
+              <img
+                src="src/assets/familia.webp"
+                alt="Familia feliz"
+                className="rounded-3xl shadow-lg w-3/4 md:w-[460px]"
+              />
+            </div>
 
-          <div className="w-full md:max-w-88 text-center md:text-left flex flex-col justify-start lg:ml-32 md:ml-17.5">
-            <div className="block md:hidden w-full">
-              <div className="flex justify-between items-center mb-6">
-                <div className="flex flex-col">
-                  <span className="inline-block bg-gradient-to-r from-[#00f4e2] to-[#00ff7f] text-black text-xs font-bold px-2 py-1 rounded w-fit">
-                    Seguro Salud Flexible
-                  </span>
-                  <h1 className="text-[28px] font-bold text-gray-900 leading-tight mt-1 text-left">
-                    Creado para ti y tu familia
-                  </h1>
+            <div className="w-full md:max-w-88 text-center md:text-left flex flex-col justify-start lg:ml-32 md:ml-17.5">
+              <div className="block md:hidden w-full">
+                <div className="flex justify-between items-center mb-6">
+                  <div className="flex flex-col">
+                    <span className="inline-block bg-gradient-to-r from-[#00f4e2] to-[#00ff7f] text-xs font-semibold px-2 py-0.5 tracking-[.4px] rounded w-fit">
+                      Seguro Salud Flexible
+                    </span>
+                    <h1 className="text-[28px] md:text-[32px] font-bold text-gray-900 leading-tight mt-1 text-left">
+                      Creado para ti y tu familia
+                    </h1>
+                  </div>
+                  <img
+                    src="src/assets/familia.webp"
+                    alt="Familia"
+                    className="w-34 h-40 object-cover rounded-lg shadow-md ml-4"
+                  />
                 </div>
-                <img
-                  src="src/assets/familia.webp"
-                  alt="Familia"
-                  className="w-34 h-40 object-cover rounded-lg shadow-md ml-4"
-                />
+                <hr className="border-gray-300 mb-4" />
               </div>
-              <hr className="border-gray-300 mb-4" />
-            </div>
 
-            <div className="hidden md:block mb-4">
-              <span className="inline-block bg-gradient-to-r from-[#00f4e2] to-[#00ff7f] text-black text-sm font-bold px-2 py-1 rounded mb-4">
-                Seguro Salud Flexible
-              </span>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                Creado para ti y tu familia
+              <div className="hidden md:block mb-4">
+                <span className="inline-block bg-gradient-to-r from-[#00f4e2] to-[#00ff7f] text-black text-[12px] font-semibold tracking-[.4px] px-2 py-1 rounded mb-4">
+                  Seguro Salud Flexible
+                </span>
+                <h1 className="font-brsonoma font-bold text-[28px] md:text-[32px] text-gray-900 leading-tight">
+                  Creado para ti y tu familia
+                </h1>
+              </div>
+
+              <h1 className=" text-black text-sm text-left">
+                Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe
+                nuestra asesoría 100% online.
               </h1>
-            </div>
 
-            <p className="text-black text-sm md:text-base text-left">
-              Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe nuestra
-              asesoría 100% online.
-            </p>
+              <form
+                className="flex flex-col gap-3 mt-6"
+                onSubmit={handleSubmit}
+              >
+                <div>
+                  <div className="flex">
+                    <select
+                      name="tipoDocumento"
+                      onChange={handleChange}
+                      value={formData.tipoDocumento}
+                      className="border border-gray-500 border-r-0 rounded-l-lg pl-2 text-lm flex-1 focus:outline-none"
+                    >
+                      <option value="DNI">DNI</option>
+                      <option value="RUC">RUC</option>
+                    </select>
 
-            <form className="flex flex-col gap-3 mt-6" onSubmit={handleSubmit}>
-              <div>
-                <div className="flex">
-                  <select
-                    name="tipoDocumento"
-                    onChange={handleChange}
-                    value={formData.tipoDocumento}
-                    className="border border-gray-300 border-r-0 rounded-l-lg pl-2 text-lm flex-1 focus:outline-none"
-                  >
-                    <option value="DNI">DNI</option>
-                    <option value="RUC">RUC</option>
-                  </select>
+                    <div className="relative flex-[2]">
+                      <input
+                        type="text"
+                        inputMode="numeric"
+                        name="documento"
+                        id="documento"
+                        value={formData.documento}
+                        onChange={handleChange}
+                        placeholder=" "
+                        className={`border rounded-r-lg px-4 py-4 text-[16px] w-full focus:outline-none peer ${
+                          errors.documento
+                            ? "border-red-500"
+                            : "border-gray-500 focus:border-black"
+                        }`}
+                      />
+                      <label
+                        htmlFor="documento"
+                        className="absolute text-sm pl-2 text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+                      >
+                        Nro. de documento
+                      </label>
+                    </div>
+                  </div>
+                  {errors.documento && (
+                    <p className="text-red-500 text-xs mt-1 text-left">
+                      {errors.documento}
+                    </p>
+                  )}
+                </div>
 
-                  <div className="relative flex-[2]">
+                <div>
+                  <div className="relative">
                     <input
                       type="text"
                       inputMode="numeric"
-                      name="documento"
-                      id="documento"
-                      value={formData.documento}
+                      name="celular"
+                      id="celular"
+                      value={formData.celular}
                       onChange={handleChange}
                       placeholder=" "
-                      className={`border rounded-r-lg px-3 py-4 text-sm w-full focus:outline-none peer ${
-                        errors.documento
+                      className={`border rounded-lg px-4 py-4 text-[16px] w-full focus:outline-none peer ${
+                        errors.celular
                           ? "border-red-500"
-                          : "border-gray-300 focus:border-black"
+                          : "border-gray-500 focus:border-black"
                       }`}
                     />
                     <label
-                      htmlFor="documento"
-                      className={`absolute left-3 text-gray-500 text-sm transition-all px-1 pointer-events-none
-                        ${
-                          formData.documento
-                            ? "top-1 text-xs text-black"
-                            : "top-1/2 -translate-y-1/2 text-gray-400"
-                        } peer-focus:top-1 peer-focus:text-xs peer-focus:text-black`}
+                      htmlFor="celular"
+                      className="absolute text-sm pl-2 text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
                     >
-                      Nro. de documento
+                      Celular
                     </label>
                   </div>
+                  {errors.celular && (
+                    <p className="text-red-500 text-xs mt-1 text-left">
+                      {errors.celular}
+                    </p>
+                  )}
+                  {generalError && (
+                    <p className="text-red-500 text-xs mt-1 text-left">
+                      {generalError}
+                    </p>
+                  )}
                 </div>
-                {errors.documento && (
-                  <p className="text-red-500 text-xs mt-1 text-left">
-                    {errors.documento}
-                  </p>
-                )}
-              </div>
 
-              <div>
-                <div className="relative">
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    name="celular"
-                    id="celular"
-                    value={formData.celular}
-                    onChange={handleChange}
-                    placeholder=" "
-                    className={`border rounded-lg px-3 py-4 text-sm w-full focus:outline-none peer ${
-                      errors.celular
-                        ? "border-red-500"
-                        : "border-gray-300 focus:border-black"
-                    }`}
-                  />
+                <div className="flex flex-col items-start gap-4 mt-2 text-[11px]">
                   <label
-                    htmlFor="celular"
-                    className={`absolute left-3 text-gray-500 text-sm transition-all px-1 pointer-events-none
-                      ${
-                        formData.celular
-                          ? "top-1 text-xs text-black"
-                          : "top-1/2 -translate-y-1/2 text-gray-400"
-                      } peer-focus:top-1 peer-focus:text-xs peer-focus:text-black`}
+                    className={`flex items-center gap-2 ${
+                      errors.privacidad ? "text-red-500" : "text-black"
+                    }`}
                   >
-                    Celular
+                    <input
+                      type="checkbox"
+                      name="privacidad"
+                      checked={formData.privacidad}
+                      onChange={handleChange}
+                      className={`appearance-none w-5 h-5 border rounded-sm bg-white checked:bg-black checked:after:content-['✓'] checked:after:text-white checked:after:flex checked:after:items-center checked:after:justify-center ${
+                        errors.privacidad ? "border-red-500" : "border-black"
+                      }`}
+                    />
+                    Acepto la Política de Privacidad
+                  </label>
+
+                  <label
+                    className={`flex items-center gap-2 ${
+                      errors.comunicaciones ? "text-red-500" : "text-black"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      name="comunicaciones"
+                      checked={formData.comunicaciones}
+                      onChange={handleChange}
+                      className={`appearance-none w-5 h-5 border rounded-sm bg-white checked:bg-black checked:after:content-['✓'] checked:after:text-white checked:after:flex checked:after:items-center checked:after:justify-center ${
+                        errors.comunicaciones
+                          ? "border-red-500"
+                          : "border-black"
+                      }`}
+                    />
+                    Acepto la Política de Comunicaciones Comerciales
                   </label>
                 </div>
-                {errors.celular && (
-                  <p className="text-red-500 text-xs mt-1 text-left">
-                    {errors.celular}
-                  </p>
-                )}
-                {generalError && (
-                  <p className="text-red-500 text-xs mt-1 text-left">
-                    {generalError}
-                  </p>
-                )}
-              </div>
 
-              <div className="flex flex-col items-start gap-2 text-xs">
-                <label
-                  className={`flex items-center gap-2 ${
-                    errors.privacidad ? "text-red-500" : "text-black"
-                  }`}
+                <span
+                  className="text-[11px] mt-1 text-black cursor-pointer underline font-semibold text-left"
+                  onClick={() => setShowModal(true)}
                 >
-                  <input
-                    type="checkbox"
-                    name="privacidad"
-                    checked={formData.privacidad}
-                    onChange={handleChange}
-                    className={`appearance-none w-5 h-5 border rounded-sm bg-white checked:bg-black checked:after:content-['✓'] checked:after:text-white checked:after:flex checked:after:items-center checked:after:justify-center ${
-                      errors.privacidad ? "border-red-500" : "border-black"
-                    }`}
-                  />
-                  Acepto la Política de Privacidad
-                </label>
+                  Aplican Términos y Condiciones.
+                </span>
 
-                <label
-                  className={`flex items-center gap-2 ${
-                    errors.comunicaciones ? "text-red-500" : "text-black"
-                  }`}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="bg-black font-bold text-[20px] text-white pl-10 pr-10 pt-5 pb-5 cursor-pointer rounded-full mt-3 hover:bg-white hover:text-black hover:border transition w-full md:w-[200px] self-center md:self-start"
                 >
-                  <input
-                    type="checkbox"
-                    name="comunicaciones"
-                    checked={formData.comunicaciones}
-                    onChange={handleChange}
-                    className={`appearance-none w-5 h-5 border rounded-sm bg-white checked:bg-black checked:after:content-['✓'] checked:after:text-white checked:after:flex checked:after:items-center checked:after:justify-center ${
-                      errors.comunicaciones ? "border-red-500" : "border-black"
-                    }`}
-                  />
-                  Acepto la Política de Comunicaciones Comerciales
-                </label>
-              </div>
-
-              <p
-                className="text-xs text-black cursor-pointer underline font-bold text-left"
-                onClick={() => setShowModal(true)}
-              >
-                Aplican Términos y Condiciones.
-              </p>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="bg-black font-bold text-lg text-white py-3 cursor-pointer rounded-full mt-6 hover:bg-white hover:text-black hover:border transition w-full md:w-1/2 self-center md:self-start"
-              >
-                {loading ? "Verificando..." : "Cotiza aquí"}
-              </button>
-            </form>
+                  {loading ? "Verificando..." : "Cotiza aquí"}
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Footer />
-
+        <Footer />
+      </div>
       {showModal && (
         <Modal
           isOpen={showModal}

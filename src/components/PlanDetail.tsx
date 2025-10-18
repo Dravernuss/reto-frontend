@@ -23,7 +23,7 @@ export default function PlanDetail({
     >
       {isRecommended && (
         <div className="absolute top-9 left-8">
-          <span className="bg-[#7DF0BA] text-black text-xs font-bold px-2 py-0.5 rounded-[6px]">
+          <span className="bg-[#7DF0BA] text-black text-[10px] tracking-[.4px] font-semibold px-2 py-1 rounded-[6px]">
             Plan recomendado
           </span>
         </div>
