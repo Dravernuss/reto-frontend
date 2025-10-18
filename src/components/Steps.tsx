@@ -19,9 +19,7 @@ export default function Steps({ currentStep }: StepsProps) {
 
   return (
     <div className="w-full bg-[#EDEFFC] h-14">
-      {/* --- Versión Desktop --- */}
       <div className="hidden md:flex items-center justify-center h-full gap-4">
-        {/* Paso 1 */}
         <div className="flex items-center gap-4">
           <div
             className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[0.75rem] font-mono  ${
@@ -41,12 +39,10 @@ export default function Steps({ currentStep }: StepsProps) {
           </span>
         </div>
 
-        {/* Línea */}
         <div>
           <img src="src/assets/line-progress.svg" alt="separator" />
         </div>
 
-        {/* Paso 2 */}
         <div className="flex items-center gap-4">
           <div
             className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[0.75rem] font-mono ${
@@ -67,7 +63,6 @@ export default function Steps({ currentStep }: StepsProps) {
         </div>
       </div>
 
-      {/* --- Versión Mobile --- */}
       <div className="md:hidden flex flex-row justify-around items-center gap-2 px-4 py-4 h-full">
         <ReturnButton handleBack={handleBack} Text="" />
         <div className="text-[0.63rem] font-bold text-black">

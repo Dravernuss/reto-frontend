@@ -18,7 +18,7 @@ export default function UserPlan({
   return (
     <div
       onClick={onSelect}
-      className={`relative w-full md:max-w-64 flex flex-col justify-between cursor-pointer rounded-3xl shadow-[0_1px_12px_#aeacf359] pt-4 pl-6 pr-6 pb-10 transition-all duration-300 ${
+      className={`relative w-full md:max-w-64 flex flex-col justify-between cursor-pointer rounded-3xl shadow-[0_1px_24px_0_rgba(174,172,243,.251)] pt-4 pl-6 pr-6 pb-10 transition-all duration-300 ${
         selected ? "ring-2 ring-black" : "ring-1 ring-transparent"
       }`}
     >

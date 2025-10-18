@@ -5,6 +5,7 @@ interface PlanDetailProps {
   image: string;
   isRecommended?: boolean;
   priceDiscounted?: number | null;
+  onSelect?: () => void;
 }
 
 export default function PlanDetail({
@@ -14,10 +15,11 @@ export default function PlanDetail({
   image,
   isRecommended,
   priceDiscounted,
+  onSelect,
 }: PlanDetailProps) {
   return (
     <div
-      className={`relative flex flex-col rounded-3xl shadow-[0_1px_12px_#aeacf359] pt-17 px-8 pb-12.75 w-72 bg-white transition-all duration-300 hover:scale-[1.02]`}
+      className={`relative flex flex-col rounded-3xl shadow-[0_1px_24px_0_rgba(174,172,243,.251)] pt-17 px-8 pb-12.75 w-72 bg-white transition-all duration-500 hover:scale-[1.02]`}
     >
       {isRecommended && (
         <div className="absolute top-9 left-8">
@@ -62,7 +64,10 @@ export default function PlanDetail({
         ))}
       </ul>
 
-      <button className="mt-auto bg-[#FF1C44] text-white font-semibold text-lg py-3.5 rounded-full hover:bg-white hover:text-red-600 hover:border-b-red-600 hover:border-1 transition-colors">
+      <button
+        onClick={onSelect}
+        className="mt-auto bg-[#FF1C44] text-white font-semibold text-lg py-3.5 rounded-full hover:bg-white hover:text-red-600 hover:border-b-red-600 hover:border-1 transition-colors"
+      >
         Seleccionar Plan
       </button>
     </div>

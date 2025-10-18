@@ -8,6 +8,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [generalError, setGeneralError] = useState("");
 
   const [formData, setFormData] = useState({
     tipoDocumento: "DNI",
@@ -72,7 +73,7 @@ export default function LandingPage() {
     }
 
     if (!/^\d{9,10}$/.test(celular)) {
-      newErrors.celular = "El celular ingresado no es válido";
+      newErrors.celular = "*El celular ingresado no es válido";
     }
 
     if (!privacidad) {
@@ -100,11 +101,10 @@ export default function LandingPage() {
         celular === "5130216147"
       )
     ) {
-      setErrors((prev) => ({
-        ...prev,
-        documento: "*El documento ingresado no es válido",
-      }));
+      setGeneralError("El usuario ingresado no existe");
       return;
+    } else {
+      setGeneralError("");
     }
 
     try {
@@ -115,8 +115,12 @@ export default function LandingPage() {
       if (!response.ok)
         throw new Error("Error al obtener los datos del usuario");
       const userData = await response.json();
-
-      localStorage.setItem("userData", JSON.stringify(userData));
+      const updatedUserData = {
+        ...userData,
+        document: "30216147",
+        phone: "5130216147",
+      };
+      localStorage.setItem("userData", JSON.stringify(updatedUserData));
 
       navigate("/plans", { replace: true });
     } catch (err) {
@@ -144,12 +148,12 @@ export default function LandingPage() {
         <img
           src="src/assets/blur-asset-left.png"
           alt=""
-          className="absolute left-0 bottom-0 md:w-[40%] lg:w-[27%] select-none pointer-events-none hidden md:block"
+          className="absolute left-0 bottom-0 md:w-[40%] lg:w-[30%] select-none pointer-events-none hidden md:block"
         />
         <img
           src="src/assets/blur-asset.png"
           alt=""
-          className="absolute right-0 top-0 md:w-[40%] lg:w-[27%] select-none pointer-events-none hidden md:block"
+          className="absolute right-0 top-0 md:w-[40%] lg:w-[20%] select-none pointer-events-none hidden md:block"
         />
 
         <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-start px-6 md:px-4 w-full">
@@ -274,6 +278,11 @@ export default function LandingPage() {
                 {errors.celular && (
                   <p className="text-red-500 text-xs mt-1 text-left">
                     {errors.celular}
+                  </p>
+                )}
+                {generalError && (
+                  <p className="text-red-500 text-xs mt-1 text-left">
+                    {generalError}
                   </p>
                 )}
               </div>
