@@ -38,8 +38,8 @@ export default function PlansPage() {
         const image =
           plan.name.toLowerCase().includes("clínica") ||
           plan.name.toLowerCase().includes("clinica")
-            ? "src/assets/plan-clinic.svg"
-            : "src/assets/plan-home.svg";
+            ? "/images/plan-clinic.svg"
+            : "/images/plan-home.svg";
 
         return {
           ...plan,
@@ -106,14 +106,14 @@ export default function PlansPage() {
           <UserPlan
             name="Para mí"
             description="Cotiza tu seguro de salud y agrega familiares si así lo deseas."
-            image="src/assets/plan-for-me.svg"
+            image="/images/plan-for-me.svg"
             selected={selectedPlan === "me"}
             onSelect={() => handleSelectPlan("me")}
           />
           <UserPlan
             name="Para alguien más"
             description="Realiza una cotización para uno de tus familiares o cualquier persona."
-            image="src/assets/plan-for-other.svg"
+            image="/images/plan-for-other.svg"
             selected={selectedPlan === "other"}
             onSelect={() => handleSelectPlan("other")}
           />
